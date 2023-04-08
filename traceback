@@ -1,9 +1,0 @@
-get_next_line.c: In function ‘get_next_line’:
-get_next_line.c:16:9: error: unused variable ‘bs’ [-Werror=unused-variable]
-   16 |     int bs = read(1, b, BUFFER_SIZE);
-      |         ^~
-cc1: all warnings being treated as errors
-
-(null)\n
-\n
--------

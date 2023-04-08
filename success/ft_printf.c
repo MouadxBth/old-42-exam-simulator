@@ -9,7 +9,7 @@ int	ft_putchar(int c)
 int	ft_putstr(char *str)
 {
 	int	length;
-
+	
 	if (!str)
 		str = "(null)";
 	length = -1;
@@ -20,30 +20,30 @@ int	ft_putstr(char *str)
 
 int	ft_putnbr(long long int number, int base)
 {
-	int	result;
+	int	length;
 	char	*hex = "0123456789abcdef";
 
-	result = 0;
+	length = 0;
 	if (number < 0)
 	{
 		number *= -1;
-		result += ft_putchar('-');
+		length += ft_putchar('-');
 	}
 	if (number >= base)
-		result += ft_putnbr(number / base, base);
-	result += ft_putchar(hex[number % base]);
-	return (result);
+		length += ft_putnbr(number / base, base);
+	length += ft_putchar(hex[number % base]);
+	return (length);
 }
 
 int	ft_printf(const char *str, ...)
 {
-	int	result;
+	int	length;
 	int	index;
 	va_list	args;
 
 	if (!str)
 		return (0);
-	result = 0;
+	length = 0;
 	index = -1;
 	va_start(args, str);
 	while (str[++index])
@@ -52,14 +52,14 @@ int	ft_printf(const char *str, ...)
 		{
 			index++;
 			if (str[index] == 's')
-				result += ft_putstr(va_arg(args, char *));
-			else if (str[index] == 'd')
-				result += ft_putnbr((long long int)va_arg(args, int), 10);
+				length += ft_putstr(va_arg(args, char *));
 			else if (str[index] == 'x')
-				result += ft_putnbr((long long int)va_arg(args, unsigned int), 16);
+				length += ft_putnbr(va_arg(args, unsigned int), 16);
+			else if (str[index] == 'd')
+				length += ft_putnbr(va_arg(args, int), 10);
 		}
 		else
-			result += ft_putchar(str[index]);
+			length += ft_putchar(str[index]);
 	}
-	return (va_end(args), result);
+	return (va_end(args), length);
 }

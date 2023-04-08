@@ -32,6 +32,5 @@ int	main(int argc, char **argv)
 	if (argc != 3)
 		return (ft_putchar('\n'), 0);
 	ft_union(argv[1], argv[2]);
-	ft_putchar('\n');
-	return (0);
+	return (ft_putchar('\n'), 0);
 }
